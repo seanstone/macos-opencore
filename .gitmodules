@@ -4,3 +4,6 @@
 [submodule "SSDTTime"]
 	path = SSDTTime
 	url = https://github.com/corpnewt/SSDTTime.git
+[submodule "ProperTree"]
+	path = ProperTree
+	url = https://github.com/corpnewt/ProperTree.git
