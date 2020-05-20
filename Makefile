@@ -71,6 +71,15 @@ Downloads/AppleALC: Downloads/AppleALC-1.4.9-RELEASE.zip
 Downloads/AppleALC-1.4.9-RELEASE.zip:
 	wget https://github.com/acidanthera/AppleALC/releases/download/1.4.9/AppleALC-1.4.9-RELEASE.zip -O $@
 
+.PHONY: ssdt
+ssdt: OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml
+
+OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml:
+	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PNLF.aml -O $@
+
+OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml: SSDT/SSDT-GPI0.dsl
+	iasl -p $@ $<
+
 .PHONY: macos
 macos:
 	gibMacOS/gibMacOS.command -r -v Catalina
