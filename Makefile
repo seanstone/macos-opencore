@@ -72,7 +72,7 @@ Downloads/AppleALC-1.4.9-RELEASE.zip:
 	wget https://github.com/acidanthera/AppleALC/releases/download/1.4.9/AppleALC-1.4.9-RELEASE.zip -O $@
 
 .PHONY: ssdt
-ssdt: OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml
+ssdt: OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml OpenCore/EFI/OC/ACPI/SSDT-HPET.aml
 
 OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml:
 	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PNLF.aml -O $@
@@ -88,6 +88,18 @@ OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml:
 
 OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml:
 	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PLUG-DRTNIA.aml -O $@
+
+.PHONY: dsdt
+dsdt: SSDTTime/Results/DSDT.aml
+
+OpenCore/EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
+	cp $< $@
+
+SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
+	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
+
+SSDTTime/Results/DSDT.aml:
+	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
 
 .PHONY: macos
 macos:
