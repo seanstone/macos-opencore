@@ -84,7 +84,7 @@ OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml: SSDT/SSDT-GPI0.dsl
 ssdt-quick: OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml
 
 OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml:
-	wget https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-USBX-LAPTOP.aml -O $@
+	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-EC-USBX-LAPTOP.aml -O $@
 
 OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml:
 	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PLUG-DRTNIA.aml -O $@
