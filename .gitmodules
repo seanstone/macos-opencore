@@ -1,3 +1,6 @@
 [submodule "gibMacOS"]
 	path = gibMacOS
 	url = https://github.com/corpnewt/gibMacOS.git
+[submodule "SSDTTime"]
+	path = SSDTTime
+	url = https://github.com/corpnewt/SSDTTime.git
