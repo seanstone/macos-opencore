@@ -1,0 +1,3 @@
+[submodule "gibMacOS"]
+	path = gibMacOS
+	url = https://github.com/corpnewt/gibMacOS.git
