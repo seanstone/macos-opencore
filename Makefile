@@ -1,7 +1,7 @@
+####################################### OpenCore #######################################
+
 OC_VERSION = 0.5.9
 OC_BUILD = DEBUG
-
-####################################### OpenCore #######################################
 
 .PHONY: opencore oc
 opencore oc: OpenCore
@@ -28,13 +28,13 @@ OpenCore/EFI/OC/Drivers/HfsPlus.efi:
 
 KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC
 
-VirtualSMC_VERSION = 1.1.3
+VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
-Lilu_VERSION = 1.4.4
+Lilu_VERSION = 1.4.5
 Lilu_BUILD = RELEASE
-WhateverGreen_VERSION = 1.3.9
+WhateverGreen_VERSION = 1.4.0
 WhateverGreen_BUILD = RELEASE
-AppleALC_VERSION = 1.4.9
+AppleALC_VERSION = 1.5.0
 AppleALC_BUILD = RELEASE
 
 .PHONY: kexts
