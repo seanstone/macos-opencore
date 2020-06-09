@@ -14,7 +14,7 @@ OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 
 Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 	mkdir -p $(@D)
-	wget https://github.com/acidanthera/OpenCorePkg/releases/download/$(OC_VERSION)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip -O $@
+	wget -nv https://github.com/acidanthera/OpenCorePkg/releases/download/$(OC_VERSION)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip -O $@
 
 ####################################### Drivers #######################################
 
@@ -22,7 +22,7 @@ Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 drivers: OpenCore/EFI/OC/Drivers/HfsPlus.efi
 
 OpenCore/EFI/OC/Drivers/HfsPlus.efi:
-	wget https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi -O $@
+	wget -nv https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi -O $@
 
 ####################################### Kexts #######################################
 
@@ -89,3 +89,10 @@ SSDTTime/Results/DSDT.aml:
 .PHONY: macos
 macos:
 	gibMacOS/gibMacOS.command -r -v Catalina
+
+###################################### Clean #######################################
+
+.PHONY: clean
+clean:
+	rm -rf Downloads
+	rm -rf OpenCore/EFI/OC/Kexts/* OpenCore/EFI/OC/ACPI/*
