@@ -1,14 +1,22 @@
-.PHONY: opencore
-opencore: OpenCore
+OC_VERSION = 0.5.9
+OC_BUILD = DEBUG
+
+####################################### OpenCore #######################################
+
+.PHONY: opencore oc
+opencore oc: OpenCore
 	rm -fv OpenCore/EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe}.efi
 	rm -fv OpenCore/EFI/OC/Tools/*
 
-OpenCore: Downloads/OpenCore-0.5.8-RELEASE.zip
+OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 	mkdir -p $@
 	unzip $< -d $@
 
-Downloads/OpenCore-0.5.8-RELEASE.zip:
-	wget https://github.com/acidanthera/OpenCorePkg/releases/download/0.5.8/OpenCore-0.5.8-RELEASE.zip -O $@
+Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
+	mkdir -p $(@D)
+	wget https://github.com/acidanthera/OpenCorePkg/releases/download/$(OC_VERSION)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip -O $@
+
+####################################### Drivers #######################################
 
 .PHONY: drivers
 drivers: OpenCore/EFI/OC/Drivers/HfsPlus.efi
@@ -16,60 +24,37 @@ drivers: OpenCore/EFI/OC/Drivers/HfsPlus.efi
 OpenCore/EFI/OC/Drivers/HfsPlus.efi:
 	wget https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi -O $@
 
+####################################### Kexts #######################################
+
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC
+
+VirtualSMC_VERSION = 1.1.3
+VirtualSMC_BUILD = RELEASE
+Lilu_VERSION = 1.4.4
+Lilu_BUILD = RELEASE
+WhateverGreen_VERSION = 1.3.9
+WhateverGreen_BUILD = RELEASE
+AppleALC_VERSION = 1.4.9
+AppleALC_BUILD = RELEASE
+
 .PHONY: kexts
-kexts: OpenCore/EFI/OC/Kexts/VirtualSMC.kext OpenCore/EFI/OC/Kexts/SMCProcessor.kext OpenCore/EFI/OC/Kexts/SMCSuperIO.kext OpenCore/EFI/OC/Kexts/Lilu.kext OpenCore/EFI/OC/Kexts/WhateverGreen.kext OpenCore/EFI/OC/Kexts/AppleALC.kext
+kexts: $(patsubst %, OpenCore/EFI/OC/Kexts/%.kext, $(KEXTS))
 
-OpenCore/EFI/OC/Kexts/VirtualSMC.kext OpenCore/EFI/OC/Kexts/SMCProcessor.kext OpenCore/EFI/OC/Kexts/SMCSuperIO.kext: OpenCore/EFI/OC/Kexts/%: Downloads/VirtualSMC/Kexts/%
-	cp -r $< $@
+Downloads/Kexts/%:
+	mkdir -p Downloads/Kexts
+	wget -nv https://github.com/acidanthera/$*/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
+	unzip Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip -d $@
 
-Downloads/VirtualSMC/Kexts/%.kext: Downloads/VirtualSMC
-	#
+.PRECIOUS: Downloads/Kexts/%
+OpenCore/EFI/OC/Kexts/%.kext: Downloads/Kexts/%
+	mkdir -p $(@D)
+	cp -r $</$*.kext $@
 
-Downloads/VirtualSMC: Downloads/VirtualSMC-1.1.3-RELEASE.zip
-	mkdir -p $@
-	unzip $< -d $@
+OpenCore/EFI/OC/Kexts/VirtualSMC.kext OpenCore/EFI/OC/Kexts/SMCProcessor.kext OpenCore/EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
+	mkdir -p $(@D)
+	cp -r $</Kexts/$(notdir $@) $@
 
-Downloads/VirtualSMC-1.1.3-RELEASE.zip:
-	wget https://github.com/acidanthera/VirtualSMC/releases/download/1.1.3/VirtualSMC-1.1.3-RELEASE.zip -O $@
-
-OpenCore/EFI/OC/Kexts/Lilu.kext: Downloads/Lilu/Lilu.kext
-	cp -r $< $@
-
-Downloads/Lilu/Lilu.kext: Downloads/Lilu
-	#
-
-Downloads/Lilu: Downloads/Lilu-1.4.4-RELEASE.zip
-	mkdir -p $@
-	unzip $< -d $@
-
-Downloads/Lilu-1.4.4-RELEASE.zip:
-	wget https://github.com/acidanthera/Lilu/releases/download/1.4.4/Lilu-1.4.4-RELEASE.zip -O $@
-
-OpenCore/EFI/OC/Kexts/WhateverGreen.kext: Downloads/WhateverGreen/WhateverGreen.kext
-	cp -r $< $@
-
-Downloads/WhateverGreen/WhateverGreen.kext: Downloads/WhateverGreen
-	#
-
-Downloads/WhateverGreen: Downloads/WhateverGreen-1.3.9-RELEASE.zip
-	mkdir -p $@
-	unzip $< -d $@
-
-Downloads/WhateverGreen-1.3.9-RELEASE.zip:
-	wget https://github.com/acidanthera/WhateverGreen/releases/download/1.3.9/WhateverGreen-1.3.9-RELEASE.zip -O $@
-
-OpenCore/EFI/OC/Kexts/AppleALC.kext: Downloads/AppleALC/AppleALC.kext
-	cp -r $< $@
-
-Downloads/AppleALC/AppleALC.kext: Downloads/AppleALC
-	#
-
-Downloads/AppleALC: Downloads/AppleALC-1.4.9-RELEASE.zip
-	mkdir -p $@
-	unzip $< -d $@
-
-Downloads/AppleALC-1.4.9-RELEASE.zip:
-	wget https://github.com/acidanthera/AppleALC/releases/download/1.4.9/AppleALC-1.4.9-RELEASE.zip -O $@
+###################################### SSDT #######################################
 
 .PHONY: ssdt
 ssdt: OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml OpenCore/EFI/OC/ACPI/SSDT-HPET.aml
