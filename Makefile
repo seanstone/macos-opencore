@@ -56,23 +56,16 @@ OpenCore/EFI/OC/Kexts/VirtualSMC.kext OpenCore/EFI/OC/Kexts/SMCProcessor.kext Op
 
 ###################################### SSDT #######################################
 
-.PHONY: ssdt
-ssdt: OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml OpenCore/EFI/OC/ACPI/SSDT-HPET.aml
+SSDTS = SSDT-PNLF SSDT-EC-USBX-LAPTOP SSDT-PLUG-DRTNIA SSDT-GPI0 SSDT-HPET
 
-OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml:
-	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PNLF.aml -O $@
+.PHONY: ssdt
+ssdt: $(patsubst %, OpenCore/EFI/OC/ACPI/%.aml, $(SSDTS))
+
+OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml:
+	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
 
 OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml: SSDT/SSDT-GPI0.dsl
 	iasl -p $@ $<
-
-.PHONY: ssdt-quick
-ssdt-quick: OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml
-
-OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml:
-	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-EC-USBX-LAPTOP.aml -O $@
-
-OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml:
-	wget https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/SSDT-PLUG-DRTNIA.aml -O $@
 
 .PHONY: dsdt
 dsdt: SSDTTime/Results/DSDT.aml
@@ -85,6 +78,8 @@ SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
 
 SSDTTime/Results/DSDT.aml:
 	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
+
+###################################### MacOS #######################################
 
 .PHONY: macos
 macos:
