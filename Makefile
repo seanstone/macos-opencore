@@ -80,6 +80,14 @@ SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
 SSDTTime/Results/DSDT.aml:
 	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
 
+###################################### config.plist #######################################
+
+.PHONY: config
+config: OpenCore/EFI/OC/config.plist
+
+OpenCore/EFI/OC/config.plist: config.plist
+	cp $< $@
+
 ###################################### MacOS #######################################
 
 .PHONY: macos
