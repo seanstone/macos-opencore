@@ -12,6 +12,7 @@ OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 	mkdir -p $@
 	unzip $< -d $@
 
+.PRECIOUS: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 	mkdir -p $(@D)
 	wget -nv https://github.com/acidanthera/OpenCorePkg/releases/download/$(OC_VERSION)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip -O $@
