@@ -6,7 +6,7 @@ OC_BUILD = DEBUG
 .PHONY: opencore oc
 opencore oc: OpenCore
 	rm -fv OpenCore/EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe}.efi
-	rm -fv OpenCore/EFI/OC/Tools/*
+	rm -fv OpenCore/EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
 
 OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 	mkdir -p $@
