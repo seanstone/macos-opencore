@@ -88,7 +88,10 @@ macos:
 
 ###################################### Clean #######################################
 
-.PHONY: clean
+.PHONY: clean cleanall
 clean:
 	rm -rf Downloads
 	rm -rf OpenCore/EFI/OC/Kexts/* OpenCore/EFI/OC/ACPI/*
+
+cleanall:
+	rm -rf OpenCore Downloads
