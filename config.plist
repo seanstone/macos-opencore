@@ -194,14 +194,12 @@
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
-				<key>AAPL,ig-platform-id</key>
-				<data>12345678</data>
 				<key>framebuffer-patch-enable</key>
-				<data>01000000</data>
+				<integer>1</integer>
 				<key>framebuffer-stolenmem</key>
-				<data>00003001</data>
+				<data>AAAwAQ==</data>
 				<key>framebuffer-fbmem</key>
-				<data>00009000</data>
+				<data>AACQAA==</data>
 			</dict>
 		</dict>
 		<key>Delete</key>
