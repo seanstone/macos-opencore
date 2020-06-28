@@ -103,3 +103,14 @@ clean:
 
 cleanall:
 	rm -rf OpenCore Downloads
+
+###################################### Install #######################################
+
+/run/media/$(USER)/OPENCORE:
+	udisksctl mount -b /dev/disk/by-partlabel/OPENCORE
+
+.PHONY: install
+install: /run/media/$(USER)/OPENCORE all
+	mkdir -p /run/media/$$USER/OPENCORE/com.apple.recovery.boot
+	cp "gibMacOS/macOS Downloads/publicrelease/061-26589 - 10.14.6 macOS Mojave/BaseSystem".{dmg,chunklist} /run/media/$$USER/OPENCORE/com.apple.recovery.boot/
+	cp -r OpenCore/EFI /run/media/$$USER/OPENCORE/
