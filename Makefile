@@ -9,7 +9,7 @@ OC_BUILD = DEBUG
 
 .PHONY: opencore oc
 opencore oc: EFI
-	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe,AudioDxe}.efi
+	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,AudioDxe}.efi
 	rm -fv EFI/OC/Tools/*
 
 EFI: Downloads/OpenCore/EFI
@@ -118,8 +118,7 @@ macos:
 
 .PHONY: clean cleanall
 clean:
-	rm -rf Downloads
-	rm -rf OpenCore/EFI/OC/Kexts/* OpenCore/EFI/OC/ACPI/*
+	rm -rf EFI
 
 cleanall:
 	rm -rf Downloads EFI
