@@ -148,6 +148,11 @@ ifeq ($(UNAME),Darwin)
 EFI = /Volumes/EFI/EFI/
 endif
 
+ifeq ($(UNAME),Darwin)
+$(EFI):
+	sudo diskutil mount /dev/disk0s9
+endif
+
 .PHONY: install
-install: config
+install: config $(EFI)
 	sudo cp -r EFI/OC $(EFI)
