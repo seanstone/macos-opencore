@@ -1,3 +1,6 @@
+.PHONY: all
+all: oc drivers kexts ssdt config
+
 ####################################### OpenCore #######################################
 
 OC_VERSION = 0.5.9
