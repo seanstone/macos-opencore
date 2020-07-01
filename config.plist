@@ -215,6 +215,13 @@
 				<key>layout-id</key>
 				<data>AQAAAA==</data>
 			</dict>
+			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
+			<dict>
+				<key>layout-id</key>
+				<data>AwAAAA==</data>
+				<key>alc-delay</key>
+				<integer>1000</integer>
+			</dict>
 		</dict>
 		<key>Delete</key>
 		<dict/>
@@ -715,7 +722,7 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>-v keepsyms=1 debug=0x100 -wegnoegpu -alcid=3</string>
+				<string>-v keepsyms=1 debug=0x100 -wegnoegpu</string>
 				<key>run-efi-updater</key>
 				<string>No</string>
 				<key>csr-active-config</key>
