@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller NullEthernet
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -73,19 +73,10 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
-	
-Downloads/Kexts/NullEthernet:
-	mkdir -p Downloads/Kexts
-	wget -nv  https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/RehabMan-NullEthernet-2016-1220.zip -O Downloads/Kexts/RehabMan-NullEthernet-2016-1220.zip
-	unzip Downloads/Kexts/RehabMan-NullEthernet-2016-1220.zip -d $@
-
-EFI/OC/Kexts/NullEthernet.kext: Downloads/Kexts/NullEthernet
-	mkdir -p $(@D)
-	cp -r $</Release/NullEthernet.kext $@
 
 ###################################### SSDT #######################################
 
-SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF SSDT-RMNE
+SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
 #SSDT-HPET
 
 .PHONY: ssdt
@@ -93,9 +84,6 @@ ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
 
 EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI/SSDT-PNLF.aml:
 	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
-
-# dsl/SSDT-RMNE.dsl:
-# 	wget -nv https://raw.githubusercontent.com/RehabMan/OS-X-Null-Ethernet/master/SSDT-RMNE.dsl -O $@
 
 EFI/OC/ACPI/%.aml: dsl/%.dsl
 	iasl -p $@ $<
