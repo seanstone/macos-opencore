@@ -3,7 +3,8 @@ all: oc drivers kexts ssdt config
 
 ####################################### OpenCore #######################################
 
-OC_VERSION = 0.5.9
+OC_RELEASE = 2020-06-30
+OC_VERSION = 0.6.0
 OC_BUILD = DEBUG
 
 .PHONY: opencore oc
@@ -18,7 +19,7 @@ OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 .PRECIOUS: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 	mkdir -p $(@D)
-	wget -nv https://github.com/acidanthera/OpenCorePkg/releases/download/$(OC_VERSION)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip -O $@
+	wget -nv https://github.com/williambj1/OpenCore-Factory/releases/download/$(OC_RELEASE)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip  -O $@
 
 ####################################### Drivers #######################################
 
