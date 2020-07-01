@@ -140,8 +140,14 @@ cleanall:
 /run/media/$(USER)/OPENCORE:
 	udisksctl mount -b /dev/disk/by-partlabel/OPENCORE
 
+UNAME = $(shell uname)
+ifeq ($(UNAME),Linux)
+EFI = /boot/EFI/
+endif
+ifeq ($(UNAME),Darwin)
+EFI = /Volumes/EFI/EFI/
+endif
+
 .PHONY: install
 install: config
-	#mkdir -p /run/media/$$USER/OPENCORE/com.apple.recovery.boot
-	#cp "gibMacOS/macOS Downloads/publicrelease/061-26589 - 10.14.6 macOS Mojave/BaseSystem".{dmg,chunklist} /run/media/$$USER/OPENCORE/com.apple.recovery.boot/
-	sudo cp -r EFI/OC /boot/EFI/
+	sudo cp -r EFI/OC $(EFI)
