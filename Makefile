@@ -8,11 +8,16 @@ OC_VERSION = 0.6.0
 OC_BUILD = DEBUG
 
 .PHONY: opencore oc
-opencore oc: OpenCore
-	rm -fv OpenCore/EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe}.efi
-	rm -fv OpenCore/EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
+opencore oc: EFI
+	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe,AudioDxe}.efi
+	rm -fv EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
 
-OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
+EFI: Downloads/OpenCore/EFI
+	cp -r $< $@
+
+Downloads/OpenCore/EFI: Downloads/OpenCore
+
+Downloads/OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 	mkdir -p $@
 	unzip $< -d $@
 
@@ -106,7 +111,7 @@ clean:
 	rm -rf OpenCore/EFI/OC/Kexts/* OpenCore/EFI/OC/ACPI/*
 
 cleanall:
-	rm -rf OpenCore Downloads
+	rm -rf Downloads EFI
 
 ###################################### Install #######################################
 
