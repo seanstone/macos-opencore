@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen VoodooInput VoodooPS2Controller
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = DEBUG
