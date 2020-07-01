@@ -93,9 +93,9 @@ SSDTTime/Results/DSDT.aml:
 ###################################### config.plist #######################################
 
 .PHONY: config
-config: OpenCore/EFI/OC/config.plist
+config: EFI/OC/config.plist
 
-OpenCore/EFI/OC/config.plist: config.plist
+EFI/OC/config.plist: config.plist
 	cp $< $@
 
 ###################################### MacOS #######################################
