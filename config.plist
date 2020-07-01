@@ -821,17 +821,17 @@
 			<key>AdviseWindows</key>
 			<false/>
 			<key>MLB</key>
-			<string>W861402FTV3GT</string>
+			<string>C17703301GUHMHKJC</string>
 			<key>ROM</key>
 			<data>ESIzRFVm</data>
 			<key>SpoofVendor</key>
 			<true/>
 			<key>SystemProductName</key>
-			<string>MacBook1,1</string>
+			<string>MacBookPro13,1</string>
 			<key>SystemSerialNumber</key>
-			<string>W861500YU9B</string>
+			<string>C17T406CGVC1</string>
 			<key>SystemUUID</key>
-			<string>D87A9E64-4A7C-4BAC-869C-D5D80EDD3D71</string>
+			<string>ADA9FBD2-36D7-4F15-BC98-383AF42AEEE2</string>
 		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
