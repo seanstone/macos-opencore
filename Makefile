@@ -10,7 +10,7 @@ OC_BUILD = DEBUG
 .PHONY: opencore oc
 opencore oc: EFI
 	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,Ps2KeyboardDxe,Ps2MouseDxe,AudioDxe}.efi
-	rm -fv EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
+	rm -fv EFI/OC/Tools/*
 
 EFI: Downloads/OpenCore/EFI
 	cp -r $< $@
@@ -36,23 +36,33 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen VoodooInput VoodooPS2Controller
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = DEBUG
+VirtualSMC_REPO = VirtualSMC
 Lilu_VERSION = 1.4.5
 Lilu_BUILD = DEBUG
+Lilu_REPO = Lilu
 WhateverGreen_VERSION = 1.4.0
 WhateverGreen_BUILD = DEBUG
+WhateverGreen_REPO = WhateverGreen
 AppleALC_VERSION = 1.5.0
 AppleALC_BUILD = DEBUG
+AppleALC_REPO = AppleALC
+VoodooInput_VERSION = 1.0.6
+VoodooInput_BUILD = DEBUG
+VoodooInput_REPO = VoodooInput
+VoodooPS2Controller_VERSION = 2.1.5
+VoodooPS2Controller_BUILD = DEBUG
+VoodooPS2Controller_REPO = VoodooPS2
 
 .PHONY: kexts
-kexts: $(patsubst %, OpenCore/EFI/OC/Kexts/%.kext, $(KEXTS))
+kexts: $(patsubst %, EFI/OC/Kexts/%.kext, $(KEXTS))
 
 Downloads/Kexts/%:
 	mkdir -p Downloads/Kexts
-	wget -nv https://github.com/acidanthera/$*/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
+	wget -nv https://github.com/acidanthera/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
 	unzip Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip -d $@
 
 .PRECIOUS: Downloads/Kexts/%
