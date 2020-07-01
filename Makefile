@@ -29,23 +29,23 @@ Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 ####################################### Drivers #######################################
 
 .PHONY: drivers
-drivers: OpenCore/EFI/OC/Drivers/HfsPlus.efi
+drivers: EFI/OC/Drivers/HfsPlus.efi
 
-OpenCore/EFI/OC/Drivers/HfsPlus.efi:
+EFI/OC/Drivers/HfsPlus.efi:
 	wget -nv https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi -O $@
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen
 
 VirtualSMC_VERSION = 1.1.4
-VirtualSMC_BUILD = RELEASE
+VirtualSMC_BUILD = DEBUG
 Lilu_VERSION = 1.4.5
-Lilu_BUILD = RELEASE
+Lilu_BUILD = DEBUG
 WhateverGreen_VERSION = 1.4.0
-WhateverGreen_BUILD = RELEASE
+WhateverGreen_BUILD = DEBUG
 AppleALC_VERSION = 1.5.0
-AppleALC_BUILD = RELEASE
+AppleALC_BUILD = DEBUG
 
 .PHONY: kexts
 kexts: $(patsubst %, OpenCore/EFI/OC/Kexts/%.kext, $(KEXTS))
@@ -56,11 +56,11 @@ Downloads/Kexts/%:
 	unzip Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip -d $@
 
 .PRECIOUS: Downloads/Kexts/%
-OpenCore/EFI/OC/Kexts/%.kext: Downloads/Kexts/%
+EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 	mkdir -p $(@D)
 	cp -r $</$*.kext $@
 
-OpenCore/EFI/OC/Kexts/VirtualSMC.kext OpenCore/EFI/OC/Kexts/SMCProcessor.kext OpenCore/EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
+EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
