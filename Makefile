@@ -5,7 +5,7 @@ all: oc drivers kexts ssdt config
 
 OC_RELEASE = 2020-06-30
 OC_VERSION = 0.6.0
-OC_BUILD = DEBUG
+OC_BUILD = RELEASE
 
 .PHONY: opencore oc
 opencore oc: EFI
@@ -39,22 +39,22 @@ EFI/OC/Drivers/HfsPlus.efi:
 KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller NullEthernet
 
 VirtualSMC_VERSION = 1.1.4
-VirtualSMC_BUILD = DEBUG
+VirtualSMC_BUILD = RELEASE
 VirtualSMC_REPO = VirtualSMC
 Lilu_VERSION = 1.4.5
-Lilu_BUILD = DEBUG
+Lilu_BUILD = RELEASE
 Lilu_REPO = Lilu
 WhateverGreen_VERSION = 1.4.0
-WhateverGreen_BUILD = DEBUG
+WhateverGreen_BUILD = RELEASE
 WhateverGreen_REPO = WhateverGreen
 AppleALC_VERSION = 1.5.0
-AppleALC_BUILD = DEBUG
+AppleALC_BUILD = RELEASE
 AppleALC_REPO = AppleALC
 VoodooInput_VERSION = 1.0.6
-VoodooInput_BUILD = DEBUG
+VoodooInput_BUILD = RELEASE
 VoodooInput_REPO = VoodooInput
 VoodooPS2Controller_VERSION = 2.1.5
-VoodooPS2Controller_BUILD = DEBUG
+VoodooPS2Controller_BUILD = RELEASE
 VoodooPS2Controller_REPO = VoodooPS2
 
 .PHONY: kexts
