@@ -88,17 +88,17 @@ EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI
 EFI/OC/ACPI/%.aml: dsl/%.dsl
 	iasl -p $@ $<
 
-.PHONY: dsdt
-dsdt: SSDTTime/Results/DSDT.aml
+# .PHONY: dsdt
+# dsdt: SSDTTime/Results/DSDT.aml
 
-EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
-	cp $< $@
+# EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
+# 	cp $< $@
 
-SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
-	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
+# SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
+# 	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
 
-SSDTTime/Results/DSDT.aml:
-	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
+# SSDTTime/Results/DSDT.aml:
+# 	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
 
 ###################################### config.plist #######################################
 
