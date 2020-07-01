@@ -66,21 +66,22 @@ EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSupe
 
 ###################################### SSDT #######################################
 
-SSDTS = SSDT-PNLF SSDT-EC-USBX-LAPTOP SSDT-PLUG-DRTNIA SSDT-GPI0 SSDT-HPET
+SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
+#SSDT-HPET
 
 .PHONY: ssdt
-ssdt: $(patsubst %, OpenCore/EFI/OC/ACPI/%.aml, $(SSDTS))
+ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
 
-OpenCore/EFI/OC/ACPI/SSDT-PNLF.aml OpenCore/EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml OpenCore/EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml:
+EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI/SSDT-PNLF.aml:
 	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
 
-OpenCore/EFI/OC/ACPI/SSDT-GPI0.aml: SSDT/SSDT-GPI0.dsl
+EFI/OC/ACPI/%.aml: dsl/%.dsl
 	iasl -p $@ $<
 
 .PHONY: dsdt
 dsdt: SSDTTime/Results/DSDT.aml
 
-OpenCore/EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
+EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
 	cp $< $@
 
 SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
