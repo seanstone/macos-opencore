@@ -125,9 +125,6 @@ cleanall:
 
 ###################################### Install #######################################
 
-/run/media/$(USER)/OPENCORE:
-	udisksctl mount -b /dev/disk/by-partlabel/OPENCORE
-
 UNAME = $(shell uname)
 ifeq ($(UNAME),Linux)
 EFI = /boot/EFI/
