@@ -13,3 +13,6 @@
 [submodule "itlwm"]
 	path = itlwm
 	url = https://github.com/zxystd/itlwm.git
+[submodule "HeliPort"]
+	path = HeliPort
+	url = https://github.com/zxystd/HeliPort.git
