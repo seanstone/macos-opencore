@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller ACPIBatteryManager
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -73,15 +73,6 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
-
-EFI/OC/Kexts/ACPIBatteryManager.kext: Downloads/Kexts/RehabMan-Battery-2018-1005
-	mkdir -p $(@D)
-	cp -r Downloads/Kexts/RehabMan-Battery-2018-1005/Release/ACPIBatteryManager.kext $@
-
-Downloads/Kexts/RehabMan-Battery-2018-1005:
-	mkdir -p Downloads/Kexts
-	wget -nv https://bitbucket.org/RehabMan/os-x-acpi-battery-driver/downloads/RehabMan-Battery-2018-1005.zip -O Downloads/Kexts/RehabMan-Battery-2018-1005.zip
-	unzip Downloads/Kexts/RehabMan-Battery-2018-1005.zip -d $@
 
 ###################################### SSDT #######################################
 
