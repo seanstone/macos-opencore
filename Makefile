@@ -74,14 +74,11 @@ EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSupe
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
-Downloads/Kexts/IntelBluetooth:
-	mkdir -p Downloads/Kexts
-	wget -nv https://github.com/zxystd/IntelBluetoothFirmware/releases/download/1.0.3/IntelBluetooth.zip -O Downloads/Kexts/IntelBluetooth.zip
-	unzip Downloads/Kexts/IntelBluetooth.zip -d $@
+EFI/OC/Kexts/IntelBluetoothFirmware.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext
+	cp -R $< $@
 
-EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: Downloads/Kexts/IntelBluetooth
-	mkdir -p $(@D)
-	cp -r $</$(notdir $@) $@
+EFI/OC/Kexts/IntelBluetoothInjector.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext
+	cp -R $< $@
 
 EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
 	cp -R $< $@
@@ -130,6 +127,14 @@ macos:
 
 itlwm/DerivedData/itlwm.kext:
 	cd itlwm && xcodebuild -target itlwm -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+###################################### IntelBluetooth #######################################
+
+IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext:
+	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothFirmware -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext:
+	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothInjector -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
 
 ###################################### Clean #######################################
 

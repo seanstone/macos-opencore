@@ -16,3 +16,6 @@
 [submodule "HeliPort"]
 	path = HeliPort
 	url = https://github.com/zxystd/HeliPort.git
+[submodule "IntelBluetoothFirmware"]
+	path = IntelBluetoothFirmware
+	url = https://github.com/zxystd/IntelBluetoothFirmware.git
