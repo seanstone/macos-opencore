@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -83,6 +83,9 @@ EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kex
 	mkdir -p $(@D)
 	cp -r $</$(notdir $@) $@
 
+EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
+	cp -R $< $@
+
 ###################################### SSDT #######################################
 
 SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
@@ -123,6 +126,11 @@ EFI/OC/config.plist: config.plist
 macos:
 	gibMacOS/gibMacOS.command -r -v Catalina
 
+###################################### itlwm #######################################
+
+itlwm/DerivedData/itlwm.kext:
+	cd itlwm && xcodebuild -target itlwm -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
 ###################################### Clean #######################################
 
 .PHONY: clean cleanall
@@ -150,3 +158,4 @@ endif
 .PHONY: install
 install: config $(EFI)
 	sudo cp -r EFI/OC $(EFI)
+
