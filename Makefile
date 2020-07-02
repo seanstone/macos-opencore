@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -73,6 +73,15 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext EFI/OC/Kexts/SMCBatteryManager.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
+
+Downloads/Kexts/IntelBluetooth:
+	mkdir -p Downloads/Kexts
+	wget -nv https://github.com/zxystd/IntelBluetoothFirmware/releases/download/1.0.3/IntelBluetooth.zip -O Downloads/Kexts/IntelBluetooth.zip
+	unzip Downloads/Kexts/IntelBluetooth.zip -d $@
+
+EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: Downloads/Kexts/IntelBluetooth
+	mkdir -p $(@D)
+	cp -r $</$(notdir $@) $@
 
 ###################################### SSDT #######################################
 
