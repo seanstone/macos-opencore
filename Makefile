@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -70,7 +70,7 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 	mkdir -p $(@D)
 	cp -r $</$*.kext $@
 
-EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
+EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext EFI/OC/Kexts/SMCBatteryManager.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
