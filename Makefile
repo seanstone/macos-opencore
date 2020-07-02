@@ -83,14 +83,6 @@ Downloads/Kexts/RehabMan-Battery-2018-1005:
 	wget -nv https://bitbucket.org/RehabMan/os-x-acpi-battery-driver/downloads/RehabMan-Battery-2018-1005.zip -O Downloads/Kexts/RehabMan-Battery-2018-1005.zip
 	unzip Downloads/Kexts/RehabMan-Battery-2018-1005.zip -d $@
 
-###################################### Battry patch #######################################
-
-.PHONY: battery
-battery: Downloads/battery_ASUS-N55SL.txt
-
-Downloads/battery_ASUS-N55SL.txt:
-	wget -nv https://raw.githubusercontent.com/RehabMan/Laptop-DSDT-Patch/master/battery/battery_ASUS-N55SL.txt -O $@
-
 ###################################### SSDT #######################################
 
 SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
