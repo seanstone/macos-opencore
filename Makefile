@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm USBMap
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -81,6 +81,9 @@ EFI/OC/Kexts/IntelBluetoothInjector.kext: IntelBluetoothFirmware/DerivedData/Int
 	cp -R $< $@
 
 EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
+	cp -R $< $@
+
+EFI/OC/Kexts/USBMap.kext: USBMap.kext
 	cp -R $< $@
 
 ###################################### SSDT #######################################
