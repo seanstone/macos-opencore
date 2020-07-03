@@ -8,8 +8,8 @@ OC_VERSION = 0.6.0
 OC_BUILD = RELEASE
 
 .PHONY: opencore oc
-opencore oc: EFI
-	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
+opencore oc: EFI EFI/OC/Resources
+	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
 	rm -fv EFI/OC/Tools/*
 
 EFI: Downloads/OpenCore/EFI
@@ -135,6 +135,11 @@ IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext:
 
 IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext:
 	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothInjector -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+###################################### itlwm #######################################
+
+EFI/OC/Resources: OcBinaryData/Resources EFI
+	cp -r $< $@
 
 ###################################### Clean #######################################
 

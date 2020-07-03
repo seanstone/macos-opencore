@@ -19,3 +19,6 @@
 [submodule "IntelBluetoothFirmware"]
 	path = IntelBluetoothFirmware
 	url = https://github.com/zxystd/IntelBluetoothFirmware.git
+[submodule "OcBinaryData"]
+	path = OcBinaryData
+	url = https://github.com/acidanthera/OcBinaryData.git
