@@ -141,6 +141,11 @@ IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext:
 EFI/OC/Resources: OcBinaryData/Resources EFI
 	cp -r $< $@
 
+###################################### Modified GRUB shell #######################################
+
+EFI/OC/Tools/modGRUBShell.efi: EFI
+	wget -nv https://github.com/datasone/grub-mod-setup_var/releases/download/1.1/modGRUBShell.efi -O $@
+
 ###################################### Clean #######################################
 
 .PHONY: clean cleanall
