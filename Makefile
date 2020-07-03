@@ -10,7 +10,7 @@ OC_BUILD = RELEASE
 .PHONY: opencore oc
 opencore oc: EFI EFI/OC/Resources
 	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
-	rm -fv EFI/OC/Tools/*
+	#rm -fv EFI/OC/Tools/*
 
 EFI: Downloads/OpenCore/EFI
 	cp -r $< $@
