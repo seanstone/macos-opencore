@@ -8,9 +8,9 @@ OC_VERSION = 0.6.0
 OC_BUILD = RELEASE
 
 .PHONY: opencore oc
-opencore oc: EFI
-	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,OpenCanopy,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
-	rm -fv EFI/OC/Tools/*
+opencore oc: EFI EFI/OC/Resources
+	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
+	rm -fv EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
 
 EFI: Downloads/OpenCore/EFI
 	cp -r $< $@
@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller NullEthernet
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm USBMap
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
@@ -70,22 +70,25 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 	mkdir -p $(@D)
 	cp -r $</$*.kext $@
 
-EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext: Downloads/Kexts/VirtualSMC
+EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext EFI/OC/Kexts/SMCBatteryManager.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
-	
-Downloads/Kexts/NullEthernet:
-	mkdir -p Downloads/Kexts
-	wget -nv  https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/RehabMan-NullEthernet-2016-1220.zip -O Downloads/Kexts/RehabMan-NullEthernet-2016-1220.zip
-	unzip Downloads/Kexts/RehabMan-NullEthernet-2016-1220.zip -d $@
 
-EFI/OC/Kexts/NullEthernet.kext: Downloads/Kexts/NullEthernet
-	mkdir -p $(@D)
-	cp -r $</Release/NullEthernet.kext $@
+EFI/OC/Kexts/IntelBluetoothFirmware.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext
+	cp -R $< $@
+
+EFI/OC/Kexts/IntelBluetoothInjector.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext
+	cp -R $< $@
+
+EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
+	cp -R $< $@
+
+EFI/OC/Kexts/USBMap.kext: USBMap.kext
+	cp -R $< $@
 
 ###################################### SSDT #######################################
 
-SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF SSDT-RMNE
+SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
 #SSDT-HPET
 
 .PHONY: ssdt
@@ -94,23 +97,20 @@ ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
 EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI/SSDT-PNLF.aml:
 	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
 
-# dsl/SSDT-RMNE.dsl:
-# 	wget -nv https://raw.githubusercontent.com/RehabMan/OS-X-Null-Ethernet/master/SSDT-RMNE.dsl -O $@
-
 EFI/OC/ACPI/%.aml: dsl/%.dsl
 	iasl -p $@ $<
 
-.PHONY: dsdt
-dsdt: SSDTTime/Results/DSDT.aml
+# .PHONY: dsdt
+# dsdt: SSDTTime/Results/DSDT.aml
 
-EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
-	cp $< $@
+# EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
+# 	cp $< $@
 
-SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
-	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
+# SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
+# 	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
 
-SSDTTime/Results/DSDT.aml:
-	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
+# SSDTTime/Results/DSDT.aml:
+# 	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
 
 ###################################### config.plist #######################################
 
@@ -126,6 +126,29 @@ EFI/OC/config.plist: config.plist
 macos:
 	gibMacOS/gibMacOS.command -r -v Catalina
 
+###################################### itlwm #######################################
+
+itlwm/DerivedData/itlwm.kext:
+	cd itlwm && xcodebuild -target itlwm -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+###################################### IntelBluetooth #######################################
+
+IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext:
+	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothFirmware -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext:
+	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothInjector -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+###################################### itlwm #######################################
+
+EFI/OC/Resources: OcBinaryData/Resources EFI
+	cp -r $< $@
+
+###################################### Modified GRUB shell #######################################
+
+EFI/OC/Tools/modGRUBShell.efi: EFI
+	wget -nv https://github.com/datasone/grub-mod-setup_var/releases/download/1.1/modGRUBShell.efi -O $@
+
 ###################################### Clean #######################################
 
 .PHONY: clean cleanall
@@ -136,9 +159,6 @@ cleanall:
 	rm -rf Downloads EFI
 
 ###################################### Install #######################################
-
-/run/media/$(USER)/OPENCORE:
-	udisksctl mount -b /dev/disk/by-partlabel/OPENCORE
 
 UNAME = $(shell uname)
 ifeq ($(UNAME),Linux)
