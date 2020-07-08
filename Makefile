@@ -150,7 +150,7 @@ endif
 
 ifeq ($(UNAME),Darwin)
 $(EFI):
-	sudo diskutil mount /dev/disk0s9
+	sudo diskutil mount /dev/disk0s1
 endif
 
 .PHONY: install
