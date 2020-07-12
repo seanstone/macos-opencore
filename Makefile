@@ -21,7 +21,6 @@ Downloads/OpenCore: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 	mkdir -p $@
 	unzip $< -d $@
 
-.PRECIOUS: Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip
 Downloads/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip:
 	mkdir -p $(@D)
 	wget -nv https://github.com/williambj1/OpenCore-Factory/releases/download/$(OC_RELEASE)/OpenCore-$(OC_VERSION)-$(OC_BUILD).zip  -O $@
@@ -36,51 +35,58 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm USBMap AsusSMC
+KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller 
+KEXTS += IntelBluetoothFirmware IntelBluetoothInjector itlwm
+KEXTS += USBMap AsusSMC
 
+VirtualSMC_REPO = acidanthera/VirtualSMC
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
-VirtualSMC_REPO = acidanthera/VirtualSMC
+
+Lilu_REPO = acidanthera/Lilu
 Lilu_VERSION = 1.4.5
 Lilu_BUILD = RELEASE
-Lilu_REPO = acidanthera/Lilu
+
+WhateverGreen_REPO = acidanthera/WhateverGreen
 WhateverGreen_VERSION = 1.4.0
 WhateverGreen_BUILD = RELEASE
-WhateverGreen_REPO = acidanthera/WhateverGreen
+
+AppleALC_REPO = acidanthera/AppleALC
 AppleALC_VERSION = 1.5.0
 AppleALC_BUILD = RELEASE
-AppleALC_REPO = acidanthera/AppleALC
+
+VoodooInput_REPO = acidanthera/VoodooInput
 VoodooInput_VERSION = 1.0.6
 VoodooInput_BUILD = RELEASE
-VoodooInput_REPO = acidanthera/VoodooInput
+
+VoodooPS2Controller_REPO = acidanthera/VoodooPS2
 VoodooPS2Controller_VERSION = 2.1.5
 VoodooPS2Controller_BUILD = RELEASE
-VoodooPS2Controller_REPO = acidanthera/VoodooPS2
+
+AsusSMC_REPO = hieplpvip/AsusSMC
 AsusSMC_VERSION = 1.2.2
 AsusSMC_BUILD = RELEASE
-AsusSMC_REPO = hieplpvip/AsusSMC
 
 .PHONY: kexts
 kexts: $(patsubst %, EFI/OC/Kexts/%.kext, $(KEXTS))
 
-Downloads/Kexts/%:
+Downloads/Kexts/%: Downloads/Kexts/%.zip
+	unzip $< -d $@
+
+Downloads/Kexts/%.zip:
 	mkdir -p Downloads/Kexts
-	wget -nv https://github.com/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
-	unzip Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip -d $@
+	wget -nv https://github.com/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O $@
 
 .PRECIOUS: Downloads/Kexts/%
 EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 	mkdir -p $(@D)
 	cp -r $</$*.kext $@
 
-EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMCProcessor.kext EFI/OC/Kexts/SMCSuperIO.kext EFI/OC/Kexts/SMCBatteryManager.kext: Downloads/Kexts/VirtualSMC
+EFI/OC/Kexts/VirtualSMC.kext EFI/OC/Kexts/SMC%.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
-EFI/OC/Kexts/IntelBluetoothFirmware.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext
-	cp -R $< $@
-
-EFI/OC/Kexts/IntelBluetoothInjector.kext: IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext
+EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: EFI/OC/Kexts/IntelBluetooth%.kext : IntelBluetoothFirmware/DerivedData/IntelBluetooth%.kext
 	cp -R $< $@
 
 EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
@@ -92,7 +98,6 @@ EFI/OC/Kexts/USBMap.kext: USBMap.kext
 ###################################### SSDT #######################################
 
 SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
-#SSDT-HPET
 
 .PHONY: ssdt
 ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
@@ -102,18 +107,6 @@ EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI
 
 EFI/OC/ACPI/%.aml: dsl/%.dsl
 	iasl -p $@ $<
-
-# .PHONY: dsdt
-# dsdt: SSDTTime/Results/DSDT.aml
-
-# EFI/OC/ACPI/SSDT-HPET.aml: SSDTTime/Results/SSDT-HPET.aml
-# 	cp $< $@
-
-# SSDTTime/Results/SSDT-HPET.aml: SSDTTime/Results/DSDT.aml
-# 	printf '1\n\nSSDTTime/Results/DSDT.aml\n\n\nq\n' | SSDTTime/SSDTTime.py
-
-# SSDTTime/Results/DSDT.aml:
-# 	printf '4\n\nq\n' | SSDTTime/SSDTTime.py
 
 ###################################### config.plist #######################################
 
@@ -136,21 +129,20 @@ itlwm/DerivedData/itlwm.kext:
 
 ###################################### IntelBluetooth #######################################
 
-IntelBluetoothFirmware/DerivedData/IntelBluetoothFirmware.kext:
-	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothFirmware -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+IntelBluetoothFirmware/DerivedData/IntelBluetooth%.kext:
+	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetooth$* -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
 
-IntelBluetoothFirmware/DerivedData/IntelBluetoothInjector.kext:
-	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetoothInjector -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
-
-###################################### itlwm #######################################
+###################################### OcBinaryData #######################################
 
 EFI/OC/Resources: OcBinaryData/Resources EFI
 	cp -r $< $@
 
 ###################################### Modified GRUB shell #######################################
 
+modGRUBShell_VERSION = 1.1
+
 EFI/OC/Tools/modGRUBShell.efi: EFI
-	wget -nv https://github.com/datasone/grub-mod-setup_var/releases/download/1.1/modGRUBShell.efi -O $@
+	wget -nv https://github.com/datasone/grub-mod-setup_var/releases/download/$(modGRUBShell_VERSION)/modGRUBShell.efi -O $@
 
 ###################################### Clean #######################################
 
@@ -159,7 +151,7 @@ clean:
 	rm -rf EFI
 
 cleanall:
-	rm -rf Downloads EFI
+	rm -rf Downloads EFI IntelBluetoothFirmware/DerivedData itlwm/DerivedData
 
 ###################################### Install #######################################
 
