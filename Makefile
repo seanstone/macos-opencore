@@ -3,7 +3,7 @@ all: oc drivers kexts ssdt config
 
 ####################################### OpenCore #######################################
 
-OC_RELEASE = 2020-06-30
+OC_RELEASE = 2020-07-10
 OC_VERSION = 0.6.0
 OC_BUILD = RELEASE
 
