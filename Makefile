@@ -124,8 +124,11 @@ macos:
 
 ###################################### itlwm #######################################
 
-itlwm/DerivedData/itlwm.kext:
+itlwm/DerivedData/itlwm.kext: itlwm/itlwm/FwBinary.cpp
 	cd itlwm && xcodebuild -target itlwm -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
+
+itlwm/itlwm/FwBinary.cpp:
+	PROJECT_DIR=$(PWD)/itlwm itlwm/fw_gen.sh
 
 ###################################### IntelBluetooth #######################################
 
