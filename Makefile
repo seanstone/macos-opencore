@@ -170,4 +170,5 @@ endif
 
 .PHONY: install
 install: config $(EFI)
+	sudo rm -rf $(EFI)/OC
 	sudo cp -r EFI/OC $(EFI)
