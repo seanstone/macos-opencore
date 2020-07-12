@@ -36,33 +36,36 @@ EFI/OC/Drivers/HfsPlus.efi:
 
 ####################################### Kexts #######################################
 
-KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm USBMap
+KEXTS = VirtualSMC SMCProcessor SMCSuperIO Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller SMCBatteryManager IntelBluetoothFirmware IntelBluetoothInjector itlwm USBMap AsusSMC
 
 VirtualSMC_VERSION = 1.1.4
 VirtualSMC_BUILD = RELEASE
-VirtualSMC_REPO = VirtualSMC
+VirtualSMC_REPO = acidanthera/VirtualSMC
 Lilu_VERSION = 1.4.5
 Lilu_BUILD = RELEASE
-Lilu_REPO = Lilu
+Lilu_REPO = acidanthera/Lilu
 WhateverGreen_VERSION = 1.4.0
 WhateverGreen_BUILD = RELEASE
-WhateverGreen_REPO = WhateverGreen
+WhateverGreen_REPO = acidanthera/WhateverGreen
 AppleALC_VERSION = 1.5.0
 AppleALC_BUILD = RELEASE
-AppleALC_REPO = AppleALC
+AppleALC_REPO = acidanthera/AppleALC
 VoodooInput_VERSION = 1.0.6
 VoodooInput_BUILD = RELEASE
-VoodooInput_REPO = VoodooInput
+VoodooInput_REPO = acidanthera/VoodooInput
 VoodooPS2Controller_VERSION = 2.1.5
 VoodooPS2Controller_BUILD = RELEASE
-VoodooPS2Controller_REPO = VoodooPS2
+VoodooPS2Controller_REPO = acidanthera/VoodooPS2
+AsusSMC_VERSION = 1.2.2
+AsusSMC_BUILD = RELEASE
+AsusSMC_REPO = hieplpvip/AsusSMC
 
 .PHONY: kexts
 kexts: $(patsubst %, EFI/OC/Kexts/%.kext, $(KEXTS))
 
 Downloads/Kexts/%:
 	mkdir -p Downloads/Kexts
-	wget -nv https://github.com/acidanthera/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
+	wget -nv https://github.com/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip
 	unzip Downloads/Kexts/$*-$($*_VERSION)-$($*_BUILD).zip -d $@
 
 .PRECIOUS: Downloads/Kexts/%
