@@ -1,8 +1,8 @@
 * [OpenCore laptop guide](https://dortania.github.io/oc-laptop-guide/)
 
 ```
-$ sudo port install wget
-$ sudo port install acpica
+$ brew install wget
+$ brew install acpica
 ```
 
 ```
