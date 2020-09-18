@@ -36,7 +36,7 @@ EFI/OC/Drivers/HfsPlus.efi:
 ####################################### Kexts #######################################
 
 KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller 
-KEXTS += IntelBluetoothFirmware IntelBluetoothInjector itlwm
+#KEXTS += IntelBluetoothFirmware IntelBluetoothInjector itlwm
 KEXTS += USBMap AsusSMC
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
