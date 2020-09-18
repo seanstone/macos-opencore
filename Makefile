@@ -3,8 +3,8 @@ all: oc drivers kexts ssdt config
 
 ####################################### OpenCore #######################################
 
-OC_RELEASE = 2020-07-10
-OC_VERSION = 0.6.0
+OC_RELEASE = 2020-09-18
+OC_VERSION = 0.6.2
 OC_BUILD = RELEASE
 
 .PHONY: opencore oc
@@ -12,7 +12,7 @@ opencore oc: EFI EFI/OC/Resources
 	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
 	rm -fv EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
 
-EFI: Downloads/OpenCore/EFI
+EFI: Downloads/OpenCore/X64/EFI
 	cp -r $< $@
 
 Downloads/OpenCore/EFI: Downloads/OpenCore
@@ -40,31 +40,31 @@ KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen
 KEXTS += USBMap AsusSMC
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
-VirtualSMC_VERSION = 1.1.4
+VirtualSMC_VERSION = 1.1.6
 VirtualSMC_BUILD = RELEASE
 
 Lilu_REPO = acidanthera/Lilu
-Lilu_VERSION = 1.4.5
+Lilu_VERSION = 1.4.7
 Lilu_BUILD = RELEASE
 
 WhateverGreen_REPO = acidanthera/WhateverGreen
-WhateverGreen_VERSION = 1.4.0
+WhateverGreen_VERSION = 1.4.2
 WhateverGreen_BUILD = RELEASE
 
 AppleALC_REPO = acidanthera/AppleALC
-AppleALC_VERSION = 1.5.0
+AppleALC_VERSION = 1.5.2
 AppleALC_BUILD = RELEASE
 
 VoodooInput_REPO = acidanthera/VoodooInput
-VoodooInput_VERSION = 1.0.6
+VoodooInput_VERSION = 1.0.7
 VoodooInput_BUILD = RELEASE
 
 VoodooPS2Controller_REPO = acidanthera/VoodooPS2
-VoodooPS2Controller_VERSION = 2.1.5
+VoodooPS2Controller_VERSION = 2.1.6
 VoodooPS2Controller_BUILD = RELEASE
 
 AsusSMC_REPO = hieplpvip/AsusSMC
-AsusSMC_VERSION = 1.2.2
+AsusSMC_VERSION = 1.4.0
 AsusSMC_BUILD = RELEASE
 
 .PHONY: kexts
