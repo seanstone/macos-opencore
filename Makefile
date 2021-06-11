@@ -82,11 +82,8 @@ EFI/OC/Kexts/USBMap.kext: USBMap.kext
 .PHONY: ssdt
 ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
 
-EFI/OC/ACPI/SSDT-PLUG-DRTNIA.aml EFI/OC/ACPI/SSDT-EC-USBX-LAPTOP.aml EFI/OC/ACPI/SSDT-PNLF.aml:
+EFI/OC/ACPI/%.aml:
 	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
-
-EFI/OC/ACPI/%.aml: dsl/%.dsl
-	iasl -p $@ $<
 
 ###################################### config.plist #######################################
 
