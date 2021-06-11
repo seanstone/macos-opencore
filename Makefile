@@ -7,8 +7,20 @@ include config.mk
 
 .PHONY: opencore oc
 opencore oc: EFI EFI/OC/Resources
-	rm -fv EFI/OC/Drivers/{OpenUsbKbDxe,UsbMouseDxe,NvmExpressDxe,XhciDxe,HiiDatabase,AudioDxe,Ps2KeyboardDxe,Ps2MouseDxe}.efi
-	rm -fv EFI/OC/Tools/{BootKicker,ChipTune,CleanNvram,GopStop,HdaCodecDump,KeyTester,MmapDump,OpenControl,ResetSystem,RtcRw}.efi
+	for f in EFI/OC/Drivers/*; do \
+		if echo $(OC_DRIVERS) | grep -w $$(basename $$f .efi)> /dev/null; then \
+			echo "Keeping driver $$f"; \
+		else \
+			rm -fv $$f; \
+		fi; \
+	done
+	for f in EFI/OC/Tools/*; do \
+		if echo $(OC_TOOLS) | grep -w $$(basename $$f .efi)> /dev/null; then \
+			echo "Keeping tool $$f"; \
+		else \
+			rm -fv $$f; \
+		fi; \
+	done
 
 EFI: Downloads/OpenCore/X64/EFI
 	cp -r $< $@

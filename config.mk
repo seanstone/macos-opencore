@@ -3,6 +3,9 @@
 OC_VERSION = 0.7.0
 OC_BUILD = RELEASE
 
+OC_DRIVERS = CrScreenshotDxe HfsPlus OpenCanopy OpenHfsPlus OpenPartitionDxe OpenRuntime
+OC_TOOLS = ControlMsrE2 CsrUtil OpenShell
+
 ################################## Kexts #####################################
 
 KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller 
