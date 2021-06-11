@@ -1,11 +1,14 @@
-* [OpenCore laptop guide](https://dortania.github.io/oc-laptop-guide/)
+* [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
+
+## Tiger Lake
+
+* https://github.com/deniro98/hackintosh-asus-zenbook-duo-ux482ea
+* https://www.reddit.com/r/hackintosh/comments/mki10b/tiger_lake_hackintosh_support
+* https://www.reddit.com/r/hackintosh/comments/nkyedd/worlds_first_working_intel_11th_tiger_lake
+
+## Build on macOS
 
 ```
 $ brew install wget
 $ brew install acpica
-```
-
-```
-$ git submodule init
-$ git submodule update
 ```
