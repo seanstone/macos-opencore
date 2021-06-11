@@ -48,7 +48,7 @@ VoodooPS2Controller_BUILD = RELEASE
 
 SSDTS = SSDT-PNLF-CFL SSDT-XOSI
 SSDTS += SSDT-EC-USBX-LAPTOP SSDT-PLUG-DRTNIA
-SSDTS += SSDT-AWAC
+SSDTS += SSDT-AWAC SSDT-RHUB
 
 ############################# Modified GRUB shell #############################
 
