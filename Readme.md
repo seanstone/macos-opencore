@@ -8,6 +8,14 @@ $ git submodule update
 $ sudo pacman -S iasl
 ```
 
+
+## Create macOS Installer
+
+Download macOS image:
+```
+$ ./gibMacOS/gibMacOS.command
+```
+
 ## Tiger Lake
 
 * https://github.com/deniro98/hackintosh-asus-zenbook-duo-ux482ea
