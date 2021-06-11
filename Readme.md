@@ -1,5 +1,13 @@
 * [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 
+## Prerequisites
+
+```
+$ git submodule init
+$ git submodule update
+$ sudo pacman -S iasl
+```
+
 ## Tiger Lake
 
 * https://github.com/deniro98/hackintosh-asus-zenbook-duo-ux482ea

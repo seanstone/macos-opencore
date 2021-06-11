@@ -1,10 +1,9 @@
 .PHONY: all
 all: oc drivers kexts ssdt config
 
-####################################### OpenCore #######################################
+include config.mk
 
-OC_VERSION = 0.6.6
-OC_BUILD = RELEASE
+####################################### OpenCore #######################################
 
 .PHONY: opencore oc
 opencore oc: EFI EFI/OC/Resources
@@ -33,38 +32,6 @@ EFI/OC/Drivers/HfsPlus.efi:
 	wget -nv https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi -O $@
 
 ####################################### Kexts #######################################
-
-KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller 
-#KEXTS += IntelBluetoothFirmware IntelBluetoothInjector itlwm
-KEXTS += USBMap AsusSMC
-
-VirtualSMC_REPO = acidanthera/VirtualSMC
-VirtualSMC_VERSION = 1.2.0
-VirtualSMC_BUILD = RELEASE
-
-Lilu_REPO = acidanthera/Lilu
-Lilu_VERSION = 1.5.1
-Lilu_BUILD = RELEASE
-
-WhateverGreen_REPO = acidanthera/WhateverGreen
-WhateverGreen_VERSION = 1.4.7
-WhateverGreen_BUILD = RELEASE
-
-AppleALC_REPO = acidanthera/AppleALC
-AppleALC_VERSION = 1.5.7
-AppleALC_BUILD = RELEASE
-
-VoodooInput_REPO = acidanthera/VoodooInput
-VoodooInput_VERSION = 1.1.0
-VoodooInput_BUILD = RELEASE
-
-VoodooPS2Controller_REPO = acidanthera/VoodooPS2
-VoodooPS2Controller_VERSION = 2.2.1
-VoodooPS2Controller_BUILD = RELEASE
-
-AsusSMC_REPO = hieplpvip/AsusSMC
-AsusSMC_VERSION = 1.4.1
-AsusSMC_BUILD = RELEASE
 
 .PHONY: kexts
 kexts: $(patsubst %, EFI/OC/Kexts/%.kext, $(KEXTS))
@@ -99,8 +66,6 @@ EFI/OC/Kexts/USBMap.kext: USBMap.kext
 	cp -R $< $@
 
 ###################################### SSDT #######################################
-
-SSDTS = SSDT-PLUG-DRTNIA SSDT-EC-USBX-LAPTOP SSDT-GPI0 SSDT-PNLF
 
 .PHONY: ssdt
 ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
@@ -144,8 +109,6 @@ EFI/OC/Resources: OcBinaryData/Resources EFI
 	cp -r $< $@
 
 ###################################### Modified GRUB shell #######################################
-
-modGRUBShell_VERSION = 1.1
 
 EFI/OC/Tools/modGRUBShell.efi: EFI
 	wget -nv https://github.com/datasone/grub-mod-setup_var/releases/download/$(modGRUBShell_VERSION)/modGRUBShell.efi -O $@
