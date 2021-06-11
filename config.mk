@@ -7,7 +7,7 @@ OC_BUILD = RELEASE
 
 KEXTS += VirtualSMC SMCProcessor SMCSuperIO SMCBatteryManager Lilu WhateverGreen AppleALC VoodooInput VoodooPS2Controller 
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector itlwm
-KEXTS += USBMap AsusSMC
+#KEXTS += USBMap AsusSMC
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
 VirtualSMC_VERSION = 1.2.4
