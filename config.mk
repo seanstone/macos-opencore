@@ -1,7 +1,7 @@
 ################################# OpenCore ###################################
 
 OC_VERSION = 0.7.0
-OC_BUILD = RELEASE
+OC_BUILD = DEBUG
 
 OC_DRIVERS = CrScreenshotDxe HfsPlus OpenCanopy OpenHfsPlus OpenPartitionDxe OpenRuntime
 OC_TOOLS = ControlMsrE2 CsrUtil OpenShell
