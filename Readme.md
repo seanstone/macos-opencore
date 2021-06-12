@@ -19,6 +19,7 @@ $ ./gibMacOS/gibMacOS.command
 ## Tiger Lake
 
 * https://github.com/deniro98/hackintosh-asus-zenbook-duo-ux482ea
+* https://github.com/balopez83/One_Mix_Yoga_4_Hackintosh
 * https://www.reddit.com/r/hackintosh/comments/mki10b/tiger_lake_hackintosh_support
 * https://www.reddit.com/r/hackintosh/comments/nkyedd/worlds_first_working_intel_11th_tiger_lake
 
