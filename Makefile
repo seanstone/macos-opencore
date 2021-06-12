@@ -73,11 +73,17 @@ EFI/OC/Kexts/SMC%.kext: Downloads/Kexts/VirtualSMC
 ## USBInjectAll
 
 Downloads/Kexts/USBInjectAll.zip:
-	wget -nv https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/RehabMan-USBInjectAll-$(USBInjectAll_VERSION).zip  -O $@
+	wget -nv https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/RehabMan-USBInjectAll-$(USBInjectAll_VERSION).zip -O $@
 
 EFI/OC/Kexts/USBInjectAll.kext: Downloads/Kexts/USBInjectAll
 	mkdir -p $(@D)
 	cp -r $</$(USBInjectAll_BUILD)/$(notdir $@) $@
+
+## XHCI-unsupported
+
+EFI/OC/Kexts/XHCI-unsupported.kext:
+	mkdir -p $@
+	wget -nv https://raw.githubusercontent.com/RehabMan/OS-X-USB-Inject-All/master/XHCI-unsupported.kext/Contents/Info.plist -P $@
 
 ## IntelBluetooth
 
