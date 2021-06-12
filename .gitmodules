@@ -10,15 +10,6 @@
 [submodule "GenSMBIOS"]
 	path = GenSMBIOS
 	url = https://github.com/corpnewt/GenSMBIOS.git
-[submodule "itlwm"]
-	path = itlwm
-	url = https://github.com/zxystd/itlwm.git
-[submodule "HeliPort"]
-	path = HeliPort
-	url = https://github.com/zxystd/HeliPort.git
-[submodule "IntelBluetoothFirmware"]
-	path = IntelBluetoothFirmware
-	url = https://github.com/zxystd/IntelBluetoothFirmware.git
 [submodule "OcBinaryData"]
 	path = OcBinaryData
 	url = https://github.com/acidanthera/OcBinaryData.git
