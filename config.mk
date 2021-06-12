@@ -20,7 +20,7 @@ KEXTS += AppleALC
 #KEXTS += AirportItlwm 
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 KEXTS += NVMeFix CtlnaAHCIPort
-#KEXTS += VoodooInput VoodooPS2Controller 
+KEXTS += VoodooPS2Controller 
 #KEXTS += USBMap
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
