@@ -4,6 +4,7 @@ OC_VERSION = 0.7.0
 OC_BUILD = DEBUG
 
 OC_DRIVERS = OpenRuntime HfsPlus
+OC_DRIVERS += NvmExpressDxe
 #OC_DRIVERS += CrScreenshotDxe OpenCanopy OpenHfsPlus
 OC_TOOLS = OpenShell
 #OC_TOOLS += ControlMsrE2 CsrUtil
