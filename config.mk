@@ -16,7 +16,8 @@ KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
 KEXTS += WhateverGreen
 KEXTS += USBInjectAll
 KEXTS += AppleALC
-#KEXTS += AirportItlwm IntelBluetoothFirmware
+KEXTS += AirportItlwm 
+KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 #KEXTS += NVMeFix
 #KEXTS += VoodooInput VoodooPS2Controller 
 #KEXTS += USBMap
@@ -47,6 +48,13 @@ VoodooPS2Controller_BUILD = RELEASE
 
 USBInjectAll_VERSION = 2018-1108
 USBInjectAll_BUILD = Release
+
+AirportItlwm_REPO = OpenIntelWireless/itlwm
+AirportItlwm_VERSION = 1.3.0
+AirportItlwm_BUILD = stable_BigSur
+
+IntelBluetooth_REPO = OpenIntelWireless/IntelBluetoothFirmware
+IntelBluetooth_VERSION = 1.1.2
 
 #################################### SSDT #####################################
 

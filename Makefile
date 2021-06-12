@@ -85,15 +85,21 @@ EFI/OC/Kexts/XHCI-unsupported.kext:
 	mkdir -p $@
 	wget -nv https://raw.githubusercontent.com/RehabMan/OS-X-USB-Inject-All/master/XHCI-unsupported.kext/Contents/Info.plist -P $@
 
+
+## AirportItlwm
+
+Downloads/Kexts/AirportItlwm.zip:
+	mkdir -p $(@D)
+	wget -nv https://github.com/$(AirportItlwm_REPO)/releases/download/v$(AirportItlwm_VERSION)/AirportItlwm_v$(AirportItlwm_VERSION)_$(AirportItlwm_BUILD).kext.zip -O $@
+
 ## IntelBluetooth
 
-EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: EFI/OC/Kexts/IntelBluetooth%.kext : IntelBluetoothFirmware/DerivedData/IntelBluetooth%.kext
-	cp -R $< $@
+EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: Downloads/Kexts/IntelBluetooth
+	mkdir -p $(@D)
+	cp -r $</$(notdir $@) $@
 
-## itlwm
-
-EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
-	cp -R $< $@
+Downloads/Kexts/IntelBluetooth.zip:
+	wget -nv https://github.com/$(IntelBluetooth_REPO)/releases/download/$(IntelBluetooth_VERSION)/IntelBluetooth.zip -O $@
 
 ## USBMap
 
@@ -124,19 +130,6 @@ EFI/OC/config.plist: config.plist
 .PHONY: macos
 macos:
 	gibMacOS/gibMacOS.command -r -v Catalina
-
-###################################### itlwm #######################################
-
-itlwm/DerivedData/itlwm.kext: itlwm/itlwm/FwBinary.cpp
-	cd itlwm && xcodebuild -target itlwm -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
-
-itlwm/itlwm/FwBinary.cpp:
-	PROJECT_DIR=$(PWD)/itlwm itlwm/fw_gen.sh
-
-###################################### IntelBluetooth #######################################
-
-IntelBluetoothFirmware/DerivedData/IntelBluetooth%.kext:
-	cd IntelBluetoothFirmware && xcodebuild -target IntelBluetooth$* -sdk macosx10.15 CONFIGURATION_BUILD_DIR=DerivedData
 
 ###################################### OcBinaryData #######################################
 
