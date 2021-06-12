@@ -60,6 +60,8 @@ EFI/OC/Kexts/%.kext: Downloads/Kexts/%
 	mkdir -p $(@D)
 	cp -r $</$*.kext $@
 
+## VirtualSMC
+
 EFI/OC/Kexts/VirtualSMC.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
@@ -68,11 +70,17 @@ EFI/OC/Kexts/SMC%.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
+## IntelBluetooth
+
 EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kext: EFI/OC/Kexts/IntelBluetooth%.kext : IntelBluetoothFirmware/DerivedData/IntelBluetooth%.kext
 	cp -R $< $@
 
+## itlwm
+
 EFI/OC/Kexts/itlwm.kext: itlwm/DerivedData/itlwm.kext
 	cp -R $< $@
+
+## USBMap
 
 EFI/OC/Kexts/USBMap.kext: USBMap.kext
 	cp -R $< $@
