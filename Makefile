@@ -101,6 +101,11 @@ EFI/OC/Kexts/IntelBluetoothFirmware.kext EFI/OC/Kexts/IntelBluetoothInjector.kex
 Downloads/Kexts/IntelBluetooth.zip:
 	wget -nv https://github.com/$(IntelBluetooth_REPO)/releases/download/$(IntelBluetooth_VERSION)/IntelBluetooth.zip -O $@
 
+## CtlnaAHCIPort
+
+Downloads/Kexts/CtlnaAHCIPort.zip:
+	wget -nv https://github.com/dortania/OpenCore-Install-Guide/raw/master/extra-files/CtlnaAHCIPort.kext.zip -O $@
+
 ## USBMap
 
 EFI/OC/Kexts/USBMap.kext: USBMap.kext

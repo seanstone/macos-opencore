@@ -18,7 +18,7 @@ KEXTS += USBInjectAll
 KEXTS += AppleALC
 #KEXTS += AirportItlwm 
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
-KEXTS += NVMeFix
+KEXTS += NVMeFix CtlnaAHCIPort
 #KEXTS += VoodooInput VoodooPS2Controller 
 #KEXTS += USBMap
 
