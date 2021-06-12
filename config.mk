@@ -11,11 +11,11 @@ OC_TOOLS = OpenShell
 ################################## Kexts #####################################
 
 KEXTS += VirtualSMC Lilu
-#KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
+KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
 #KEXTS += SMCLightSensor
 KEXTS += WhateverGreen
 KEXTS += USBInjectAll
-#KEXTS += AppleALC
+KEXTS += AppleALC
 #KEXTS += AirportItlwm IntelBluetoothFirmware
 #KEXTS += NVMeFix
 #KEXTS += VoodooInput VoodooPS2Controller 
