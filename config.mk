@@ -65,7 +65,8 @@ NVMeFix_BUILD = RELEASE
 
 SSDTS = SSDT-PNLF-CFL SSDT-XOSI
 SSDTS += SSDT-EC-USBX-LAPTOP SSDT-PLUG-DRTNIA
-SSDTS += SSDT-AWAC SSDT-RHUB
+SSDTS += SSDT-AWAC
+SSDTS += SSDT-USB-Reset
 
 ############################# Modified GRUB shell #############################
 

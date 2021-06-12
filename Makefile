@@ -119,7 +119,7 @@ ssdt: $(patsubst %, EFI/OC/ACPI/%.aml, $(SSDTS))
 EFI/OC/ACPI/%.aml:
 	wget -nv https://github.com/dortania/Getting-Started-With-ACPI/raw/master/extra-files/compiled/$(notdir $@) -O $@
 
-EFI/OC/ACPI/SSDT-RHUB.aml: ACPI/SSDT-RHUB.aml
+EFI/OC/ACPI/SSDT-USB-Reset.aml: ACPI/SSDT-USB-Reset.aml
 	cp $< $@
 
 ###################################### config.plist #######################################
