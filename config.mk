@@ -14,6 +14,7 @@ KEXTS += VirtualSMC Lilu
 #KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
 #KEXTS += SMCLightSensor
 KEXTS += WhateverGreen
+KEXTS += USBInjectAll
 #KEXTS += AppleALC
 #KEXTS += AirportItlwm IntelBluetoothFirmware
 #KEXTS += NVMeFix
@@ -43,6 +44,9 @@ VoodooInput_BUILD = RELEASE
 VoodooPS2Controller_REPO = acidanthera/VoodooPS2
 VoodooPS2Controller_VERSION = 2.2.3
 VoodooPS2Controller_BUILD = RELEASE
+
+USBInjectAll_VERSION = 2018-1108
+USBInjectAll_BUILD = Release
 
 #################################### SSDT #####################################
 

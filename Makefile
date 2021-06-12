@@ -52,7 +52,7 @@ Downloads/Kexts/%: Downloads/Kexts/%.zip
 	unzip $< -d $@
 
 Downloads/Kexts/%.zip:
-	mkdir -p Downloads/Kexts
+	mkdir -p $(@D)
 	wget -nv https://github.com/$($*_REPO)/releases/download/$($*_VERSION)/$*-$($*_VERSION)-$($*_BUILD).zip -O $@
 
 .PRECIOUS: Downloads/Kexts/%
@@ -69,6 +69,15 @@ EFI/OC/Kexts/VirtualSMC.kext: Downloads/Kexts/VirtualSMC
 EFI/OC/Kexts/SMC%.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
+
+## USBInjectAll
+
+Downloads/Kexts/USBInjectAll.zip:
+	wget -nv https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/RehabMan-USBInjectAll-$(USBInjectAll_VERSION).zip  -O $@
+
+EFI/OC/Kexts/USBInjectAll.kext: Downloads/Kexts/USBInjectAll
+	mkdir -p $(@D)
+	cp -r $</$(USBInjectAll_BUILD)/$(notdir $@) $@
 
 ## IntelBluetooth
 
