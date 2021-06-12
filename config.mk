@@ -18,7 +18,7 @@ KEXTS += USBInjectAll
 KEXTS += AppleALC
 #KEXTS += AirportItlwm 
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
-#KEXTS += NVMeFix
+KEXTS += NVMeFix
 #KEXTS += VoodooInput VoodooPS2Controller 
 #KEXTS += USBMap
 
@@ -55,6 +55,10 @@ AirportItlwm_BUILD = stable_BigSur
 
 IntelBluetooth_REPO = OpenIntelWireless/IntelBluetoothFirmware
 IntelBluetooth_VERSION = 1.1.2
+
+NVMeFix_REPO = acidanthera/NVMeFix
+NVMeFix_VERSION = 1.0.8
+NVMeFix_BUILD = RELEASE
 
 #################################### SSDT #####################################
 
