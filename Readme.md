@@ -32,6 +32,12 @@ $ ./gibMacOS/gibMacOS.command
 * https://medium.com/@salbito/patching-support-for-nvme-ssds-on-macos-sierra-43672c94e2a8
 * https://www.tonymacx86.com/threads/fully-functional-windows-10-high-sierra-dual-boot-32gb-intel-optane.262361/
 
+```
+NVMe as NVMe (eg. SATA mode AHCI) is way different from NVMe as RST (SATA mode RAID).
+Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
+It likely causes a problem for macOS ACHI port kext.
+```
+
 ## Build on macOS
 
 ```
