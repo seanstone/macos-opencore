@@ -30,6 +30,7 @@ $ ./gibMacOS/gibMacOS.command
 * https://github.com/fidele007/CLOVER/tree/master/kexts/Other/SATA-RAID-unsupported.kext
 * https://www.tonymacx86.com/threads/guide-hackrnvmefamily-co-existence-with-ionvmefamily-using-class-code-spoof.210316/
 * https://medium.com/@salbito/patching-support-for-nvme-ssds-on-macos-sierra-43672c94e2a8
+* https://www.tonymacx86.com/threads/fully-functional-windows-10-high-sierra-dual-boot-32gb-intel-optane.262361/
 
 ## Build on macOS
 
