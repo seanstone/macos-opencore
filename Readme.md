@@ -26,6 +26,8 @@ $ ./gibMacOS/gibMacOS.command
 
 ## NVMe
 
+Doesn't work :(
+
 Problem:
 > * macOS doesn't support hardware RAID or IDE mode properly.
 > * Note drives already using Intel Rapid Storage Technology(RST, soft RAID for Windows and Linux) will not be accessible in macOS.
