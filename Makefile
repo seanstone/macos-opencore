@@ -108,7 +108,7 @@ Downloads/Kexts/CtlnaAHCIPort.zip:
 
 ## Additional Kexts
 
-EFI/OC/Kexts/SATA-RAID-unsupported.kext EFI/OC/Kexts/USBMap.kext: EFI/OC/Kexts/%.kext: Kexts/%.kext
+EFI/OC/Kexts/USBMap.kext: EFI/OC/Kexts/%.kext: Kexts/%.kext
 	cp -r $< $@
 
 ###################################### SSDT #######################################
