@@ -20,6 +20,7 @@ KEXTS += AppleALC
 #KEXTS += AirportItlwm 
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 KEXTS += NVMeFix CtlnaAHCIPort
+KEXTS += SATA-RAID-unsupported
 KEXTS += VoodooPS2Controller 
 #KEXTS += USBMap
 

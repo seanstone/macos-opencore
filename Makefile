@@ -106,10 +106,10 @@ Downloads/Kexts/IntelBluetooth.zip:
 Downloads/Kexts/CtlnaAHCIPort.zip:
 	wget -nv https://github.com/dortania/OpenCore-Install-Guide/raw/master/extra-files/CtlnaAHCIPort.kext.zip -O $@
 
-## USBMap
+## Additional Kexts
 
-EFI/OC/Kexts/USBMap.kext: USBMap.kext
-	cp -R $< $@
+EFI/OC/Kexts/SATA-RAID-unsupported.kext EFI/OC/Kexts/USBMap.kext: EFI/OC/Kexts/%.kext: Kexts/%.kext
+	cp -r $< $@
 
 ###################################### SSDT #######################################
 
