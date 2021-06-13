@@ -29,6 +29,7 @@ $ ./gibMacOS/gibMacOS.command
 * https://www.tonymacx86.com/threads/nvme-ssd-and-intel-rapid-storage-bios-mode.257660/
 * https://github.com/fidele007/CLOVER/tree/master/kexts/Other/SATA-RAID-unsupported.kext
 * https://www.tonymacx86.com/threads/guide-hackrnvmefamily-co-existence-with-ionvmefamily-using-class-code-spoof.210316/
+* https://medium.com/@salbito/patching-support-for-nvme-ssds-on-macos-sierra-43672c94e2a8
 
 ## Build on macOS
 
