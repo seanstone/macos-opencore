@@ -26,6 +26,12 @@ $ ./gibMacOS/gibMacOS.command
 
 ## NVMe
 
+Problem:
+```
+* macOS doesn't support hardware RAID or IDE mode properly.
+* Note drives already using Intel Rapid Storage Technology(RST, soft RAID for Windows and Linux) will not be accessible in macOS.
+```
+
 * https://www.tonymacx86.com/threads/nvme-ssd-and-intel-rapid-storage-bios-mode.257660/
 * https://github.com/fidele007/CLOVER/tree/master/kexts/Other/SATA-RAID-unsupported.kext
 * https://www.tonymacx86.com/threads/guide-hackrnvmefamily-co-existence-with-ionvmefamily-using-class-code-spoof.210316/
