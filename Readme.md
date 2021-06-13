@@ -43,6 +43,7 @@ Problem:
 * https://www.insanelymac.com/forum/topic/183644-ich10r-in-raid-mode-working-in-slsorta/
 * http://bradstevo.blogspot.com/2012/01/making-ahci-hackintosh-install-raid.html
 * https://www.tonymacx86.com/threads/success-hp-pavilion-x360-15-cr0037wm-oc-0-6-4.307211/
+* https://www.tonymacx86.com/threads/most-powerful-hackbook-pro-asus-rog-g701vo-cs74k-i7-6820-64gb-ddr4-w-980-dedicated.217739/
 
 > NVMe as NVMe (eg. SATA mode AHCI) is way different from NVMe as RST (SATA mode RAID).
 > Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
