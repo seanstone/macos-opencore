@@ -27,10 +27,8 @@ $ ./gibMacOS/gibMacOS.command
 ## NVMe
 
 Problem:
-```
-* macOS doesn't support hardware RAID or IDE mode properly.
-* Note drives already using Intel Rapid Storage Technology(RST, soft RAID for Windows and Linux) will not be accessible in macOS.
-```
+> * macOS doesn't support hardware RAID or IDE mode properly.
+> * Note drives already using Intel Rapid Storage Technology(RST, soft RAID for Windows and Linux) will not be accessible in macOS.
 
 * https://www.tonymacx86.com/threads/nvme-ssd-and-intel-rapid-storage-bios-mode.257660/
 * https://github.com/fidele007/CLOVER/tree/master/kexts/Other/SATA-RAID-unsupported.kext
@@ -39,11 +37,9 @@ Problem:
 * https://www.tonymacx86.com/threads/fully-functional-windows-10-high-sierra-dual-boot-32gb-intel-optane.262361/
 * https://www.insanelymac.com/forum/topic/301456-modded-appleahciportkext-for-raid-sata-in-laptops-for-mavericks-andor-yosemite/
 
-```
-NVMe as NVMe (eg. SATA mode AHCI) is way different from NVMe as RST (SATA mode RAID).
-Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
-It likely causes a problem for macOS ACHI port kext.
-```
+> NVMe as NVMe (eg. SATA mode AHCI) is way different from NVMe as RST (SATA mode RAID).
+> Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
+> It likely causes a problem for macOS ACHI port kext.
 
 ## Build on macOS
 
