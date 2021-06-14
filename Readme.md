@@ -55,6 +55,7 @@ Problem:
 * https://developer.apple.com/documentation/kernel/implementing_drivers_system_extensions_and_kexts
 * https://github.com/RehabMan/patch-nvme
 * https://github.com/acidanthera/MacKernelSDK
+* https://github.com/acidanthera/NVMeFix
 
 ## Build on macOS
 
