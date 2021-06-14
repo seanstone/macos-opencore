@@ -63,6 +63,7 @@ Problem:
 * https://github.com/RehabMan/patch-nvme
 * https://github.com/acidanthera/MacKernelSDK
 * https://github.com/acidanthera/NVMeFix
+* https://developer.apple.com/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device
 
 ## Build on macOS
 
