@@ -49,6 +49,10 @@ Problem:
 > Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
 > It likely causes a problem for macOS ACHI port kext.
 
+### Fixing
+
+* https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252253
+
 ## Build on macOS
 
 ```
