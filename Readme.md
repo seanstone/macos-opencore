@@ -52,6 +52,7 @@ Problem:
 ### Fixing
 
 * https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252253
+* https://developer.apple.com/documentation/kernel/implementing_drivers_system_extensions_and_kexts
 
 ## Build on macOS
 
