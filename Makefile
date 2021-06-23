@@ -70,6 +70,15 @@ EFI/OC/Kexts/SMC%.kext: Downloads/Kexts/VirtualSMC
 	mkdir -p $(@D)
 	cp -r $</Kexts/$(notdir $@) $@
 
+## VoodooRMI
+
+EFI/OC/Kexts/VoodooRMI.kext EFI/OC/Kexts/VoodooSMBus.kext: EFI/OC/Kexts/%.kext: Downloads/Kexts/VoodooRMI-$(VoodooRMI_VERSION)-$(VoodooRMI_BUILD)/%.kext
+	mkdir -p $(@D)
+	cp -r $< $@
+
+Downloads/Kexts/VoodooRMI-$(VoodooRMI_VERSION)-$(VoodooRMI_BUILD)/%.kext: Downloads/Kexts/VoodooRMI.zip
+	unzip $< -d Downloads/Kexts
+
 ## USBInjectAll
 
 Downloads/Kexts/USBInjectAll.zip:

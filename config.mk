@@ -21,6 +21,7 @@ KEXTS += AppleALC
 #KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 KEXTS += NVMeFix CtlnaAHCIPort
 KEXTS += VoodooPS2Controller 
+KEXTS += VoodooRMI VoodooSMBus
 #KEXTS += USBMap
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
@@ -46,6 +47,10 @@ VoodooInput_BUILD = RELEASE
 VoodooPS2Controller_REPO = acidanthera/VoodooPS2
 VoodooPS2Controller_VERSION = 2.2.3
 VoodooPS2Controller_BUILD = RELEASE
+
+VoodooRMI_REPO = VoodooSMBus/VoodooRMI
+VoodooRMI_VERSION = 1.3.3
+VoodooRMI_BUILD = Release
 
 USBInjectAll_VERSION = 2018-1108
 USBInjectAll_BUILD = Release
