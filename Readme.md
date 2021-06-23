@@ -26,6 +26,8 @@ $ ./gibMacOS/gibMacOS.command
 
 ## NVMe
 
+Doesn't work :(
+
 Problem:
 > * macOS doesn't support hardware RAID or IDE mode properly.
 > * Note drives already using Intel Rapid Storage Technology(RST, soft RAID for Windows and Linux) will not be accessible in macOS.
@@ -41,10 +43,27 @@ Problem:
 * https://www.insanelymac.com/forum/topic/183644-ich10r-in-raid-mode-working-in-slsorta/
 * http://bradstevo.blogspot.com/2012/01/making-ahci-hackintosh-install-raid.html
 * https://www.tonymacx86.com/threads/success-hp-pavilion-x360-15-cr0037wm-oc-0-6-4.307211/
+* https://www.tonymacx86.com/threads/most-powerful-hackbook-pro-asus-rog-g701vo-cs74k-i7-6820-64gb-ddr4-w-980-dedicated.217739/
 
 > NVMe as NVMe (eg. SATA mode AHCI) is way different from NVMe as RST (SATA mode RAID).
 > Having NVMe devices with SATA mode RAID, means the NVMe devices disappear (as standalone NVMe on PCIe) and instead are connected to the chipset SATA controller instead.
 > It likely causes a problem for macOS ACHI port kext.
+
+### Solution
+
+* Don't buy another laptop
+* Install macOS in external USB drive
+ * The installer will get stuck if there is not enough space in the installer partition
+* Add VMD support via a kext
+
+### Fixing
+
+* https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252253
+* https://developer.apple.com/documentation/kernel/implementing_drivers_system_extensions_and_kexts
+* https://github.com/RehabMan/patch-nvme
+* https://github.com/acidanthera/MacKernelSDK
+* https://github.com/acidanthera/NVMeFix
+* https://developer.apple.com/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device
 
 ## Build on macOS
 
