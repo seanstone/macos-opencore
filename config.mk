@@ -17,11 +17,12 @@ KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
 KEXTS += WhateverGreen
 KEXTS += USBInjectAll
 KEXTS += AppleALC
-#KEXTS += AirportItlwm 
-#KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
+KEXTS += AirportItlwm 
+KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 KEXTS += NVMeFix CtlnaAHCIPort
 KEXTS += VoodooPS2Controller 
-KEXTS += VoodooRMI VoodooSMBus
+KEXTS += VoodooI2C VoodooI2CHID VoodooI2CSynaptics
+#KEXTS += VoodooRMI VoodooSMBus
 #KEXTS += USBMap
 
 VirtualSMC_REPO = acidanthera/VirtualSMC
@@ -51,6 +52,9 @@ VoodooPS2Controller_BUILD = RELEASE
 VoodooRMI_REPO = VoodooSMBus/VoodooRMI
 VoodooRMI_VERSION = 1.3.3
 VoodooRMI_BUILD = Release
+
+VoodooI2C_REPO = VoodooI2C/VoodooI2C
+VoodooI2C_VERSION = 2.6.5
 
 USBInjectAll_VERSION = 2018-1108
 USBInjectAll_BUILD = Release

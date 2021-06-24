@@ -79,6 +79,26 @@ EFI/OC/Kexts/VoodooRMI.kext EFI/OC/Kexts/VoodooSMBus.kext: EFI/OC/Kexts/%.kext: 
 Downloads/Kexts/VoodooRMI-$(VoodooRMI_VERSION)-$(VoodooRMI_BUILD)/%.kext: Downloads/Kexts/VoodooRMI.zip
 	unzip $< -d Downloads/Kexts
 
+## VoodooI2C
+
+Downloads/Kexts/VoodooI2C.zip:
+	mkdir -p $(@D)
+	wget -nv https://github.com/$(VoodooI2C_REPO)/releases/download/$(VoodooI2C_VERSION)/VoodooI2C-$(VoodooI2C_VERSION).zip -O $@
+
+EFI/OC/Kexts/VoodooI2C%.kext: Downloads/Kexts/VoodooI2C/VoodooI2C%.kext
+	mkdir -p $(@D)
+	cp -r $< $@
+
+EFI/OC/Kexts/VoodooI2C.kext: Downloads/Kexts/VoodooI2C/VoodooI2C.kext
+	mkdir -p $(@D)
+	cp -r $< $@
+
+Downloads/Kexts/VoodooI2C/VoodooI2C%.kext: Downloads/Kexts/VoodooI2C.zip
+	unzip $< -d Downloads/Kexts/VoodooI2C
+
+Downloads/Kexts/VoodooI2C/VoodooI2C.kext: Downloads/Kexts/VoodooI2C.zip
+	unzip $< -d Downloads/Kexts/VoodooI2C
+
 ## USBInjectAll
 
 Downloads/Kexts/USBInjectAll.zip:
