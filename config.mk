@@ -17,11 +17,11 @@ KEXTS += SMCProcessor SMCSuperIO SMCBatteryManager
 KEXTS += WhateverGreen
 KEXTS += USBInjectAll
 KEXTS += AppleALC
-KEXTS += AirportItlwm 
-KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
+#KEXTS += AirportItlwm 
+#KEXTS += IntelBluetoothFirmware IntelBluetoothInjector
 KEXTS += NVMeFix CtlnaAHCIPort
 KEXTS += VoodooPS2Controller 
-KEXTS += VoodooI2C VoodooI2CHID VoodooI2CSynaptics
+#KEXTS += VoodooI2C VoodooI2CHID VoodooI2CSynaptics
 #KEXTS += VoodooRMI VoodooSMBus
 #KEXTS += USBMap
 
