@@ -19,6 +19,8 @@ $ ./gibMacOS/gibMacOS.command
 
 * https://github.com/deniro98/hackintosh-asus-zenbook-duo-ux482ea
 * https://github.com/balopez83/One_Mix_Yoga_4_Hackintosh
+* https://github.com/NTHT1MD/Hackintosh_Opencore_HP-Pavilion-X360-dw1016TU-i3
+* https://github.com/xqmnig/YOGA-14s-2021-hackintosh
 * https://www.reddit.com/r/hackintosh/comments/mki10b/tiger_lake_hackintosh_support
 * https://www.reddit.com/r/hackintosh/comments/nkyedd/worlds_first_working_intel_11th_tiger_lake
 * https://www.olarila.com/topic/14072-wip-step-by-step-z590-gigabyte-vision-d-i7-rocket-lake-s/
