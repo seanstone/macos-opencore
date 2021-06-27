@@ -35,6 +35,11 @@ $ ./gibMacOS/gibMacOS.command
 * https://developer.apple.com/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device
 * https://github.com/cdf/Innie
 
+## Intel Graphics
+
+* https://sourceforge.net/p/vmsvga2/code/HEAD/tree/
+* https://github.com/torvalds/linux/tree/master/drivers/gpu/drm/i915
+
 ## Build on macOS
 
 ```
