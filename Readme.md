@@ -39,6 +39,7 @@ $ ./gibMacOS/gibMacOS.command
 
 * https://sourceforge.net/p/vmsvga2/code/HEAD/tree/
 * https://github.com/torvalds/linux/tree/master/drivers/gpu/drm/i915
+* https://github.com/ivanagui2/VMQemuVGA
 
 ## Build on macOS
 
