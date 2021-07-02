@@ -59,6 +59,7 @@ IOPCI2PCIBridge
 * https://github.com/ivanagui2/VMQemuVGA
 * https://github.com/freebsd/freebsd-src/tree/main/sys/compat/linuxkpi
 * https://github.com/acidanthera/WhateverGreen/blob/master/WhateverGreen/kern_igfx.cpp
+* https://www.phoronix.com/scan.php?page=news_item&px=Intel-Tiger-Lake-Linux-5.7-Hit
 
 ## Build on macOS
 
