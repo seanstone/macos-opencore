@@ -48,6 +48,9 @@ VMD0@E  <class IOPCIDevice, id 0x1000002f2, registered, matched, active, busy 0 
     | |   |     "IOPCIExpressCapabilities" = 146
 ...
 ```
+```
+IOPCI2PCIBridge
+```
 
 ## Intel Graphics
 
