@@ -58,6 +58,7 @@ IOPCI2PCIBridge
 * https://github.com/torvalds/linux/tree/master/drivers/gpu/drm/i915
 * https://github.com/ivanagui2/VMQemuVGA
 * https://github.com/freebsd/freebsd-src/tree/main/sys/compat/linuxkpi
+* https://github.com/acidanthera/WhateverGreen/blob/master/WhateverGreen/kern_igfx.cpp
 
 ## Build on macOS
 
