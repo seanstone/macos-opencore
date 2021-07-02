@@ -35,6 +35,20 @@ $ ./gibMacOS/gibMacOS.command
 * https://developer.apple.com/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device
 * https://github.com/cdf/Innie
 
+```
+$ sudo ioreg -l | grep PCI
+```
+```
+...
+VMD0@E  <class IOPCIDevice, id 0x1000002f2, registered, matched, active, busy 0 (12 ms), retain 48>
+    | |   |     "IOInterruptControllers" = ("IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController","IOPCIMessagedInterruptController")
+    | |   |     "IOPCIResourced" = Yes
+    | |   |     "IOPCIExpressLinkCapabilities" = 0
+    | |   |     "IOPCIExpressLinkStatus" = 0
+    | |   |     "IOPCIExpressCapabilities" = 146
+...
+```
+
 ## Intel Graphics
 
 * https://sourceforge.net/p/vmsvga2/code/HEAD/tree/
